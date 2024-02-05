@@ -1,23 +1,19 @@
-package PACKAGE_NAME;
+package ru.iteco.fmhandroid.ui;
 
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
-import static androidx.test.espresso.matcher.ViewMatchers.withSubstring;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
+import static ru.iteco.fmhandroid.ui.TestUtils.waitDisplayed;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +28,11 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.ui.AppActivity;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -55,12 +49,8 @@ public class AppLoginTest {
 
     @Test
     public void appLoginTest() {
-        try {
-            Thread.sleep(6_000);
-        } catch (InterruptedException exception) {
 
-        }
-
+        onView(isRoot()).perform(waitDisplayed(R.id.login_text_input_layout, 6000));
 
         ViewInteraction loginInputText = onView(
                 allOf(
@@ -84,13 +74,7 @@ public class AppLoginTest {
         signInButton.check(matches(isDisplayed()));
         signInButton.perform(click());
 
-
-
-        try {
-            Thread.sleep(6_000);
-        } catch (InterruptedException exception) {
-
-        }
+        onView(isRoot()).perform(waitDisplayed(R.id.container_list_news_include_on_fragment_main, 5000));
 
         ViewInteraction newsTitle = onView(withId(R.id.container_list_news_include_on_fragment_main));
         newsTitle.check(matches(isDisplayed()));
@@ -104,8 +88,6 @@ public class AppLoginTest {
         logOutButton.perform(click());
 
     }
-
-
 
 
     private static Matcher<View> childAtPosition(
