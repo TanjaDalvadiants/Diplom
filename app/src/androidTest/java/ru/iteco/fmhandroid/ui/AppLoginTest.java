@@ -11,8 +11,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static ru.iteco.fmhandroid.ui.TestUtils.logOut;
 import static ru.iteco.fmhandroid.ui.TestUtils.waitDisplayed;
 
 import android.view.View;
@@ -28,6 +28,7 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,6 +46,17 @@ public class AppLoginTest {
     String LOGIN = "login2";
     String PASSWORD = "password2";
     String NEWS = "News";
+
+
+
+
+    @AfterClass
+    public static void logout() {
+        logOut();
+    }
+
+
+
 
 
     @Test
@@ -79,13 +91,7 @@ public class AppLoginTest {
         ViewInteraction newsTitle = onView(withId(R.id.container_list_news_include_on_fragment_main));
         newsTitle.check(matches(isDisplayed()));
 
-        ViewInteraction userButton = onView(withId(R.id.authorization_image_button));
-        userButton.check(matches(isDisplayed()));
-        userButton.perform(click());
 
-        ViewInteraction logOutButton = onView(withText("Log out"));
-        logOutButton.check(matches(isDisplayed()));
-        logOutButton.perform(click());
 
     }
 
