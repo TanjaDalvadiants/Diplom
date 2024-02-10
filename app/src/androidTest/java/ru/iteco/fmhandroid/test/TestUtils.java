@@ -1,4 +1,4 @@
-package ru.iteco.fmhandroid.ui;
+package ru.iteco.fmhandroid.test;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -26,6 +26,7 @@ import ru.iteco.fmhandroid.R;
 public class TestUtils {
     /**
      * Perform action of waiting for a specific view id to be displayed.
+     *
      * @param viewId The id of the view to wait for.
      * @param millis The timeout of until when to wait for.
      */
