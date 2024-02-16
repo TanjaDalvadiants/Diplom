@@ -12,21 +12,18 @@ import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
 
-public class NewsPage {
-    ViewInteraction newsContainer = onView(withId(R.id.container_list_news_include));
-    ViewInteraction goToControlPanelButton = onView(withId(R.id.edit_news_material_button));
+public class ControlPanelPage {
+    ViewInteraction addNewsButton = onView(withId(R.id.add_news_image_view));
+
+    public void addNews() {
+        addNewsButton.perform(click());
+    }
 
     public void validatePageLoaded() {
-        newsContainer.check(matches(isDisplayed()));
-        goToControlPanelButton.check(matches(isDisplayed()));
+        addNewsButton.check(matches(isDisplayed()));
     }
 
     public void waitUntilPageLoaded() {
-        onView(isRoot()).perform(waitDisplayed(R.id.container_list_news_include, 6000));
+        onView(isRoot()).perform(waitDisplayed(R.id.add_news_image_view, 6000));
     }
-
-    public void goToControlPanel() {
-        goToControlPanelButton.perform(click());
-    }
-
 }

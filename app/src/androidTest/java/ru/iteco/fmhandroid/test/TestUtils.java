@@ -22,8 +22,40 @@ import org.hamcrest.Matcher;
 import java.util.concurrent.TimeoutException;
 
 import ru.iteco.fmhandroid.R;
+import ru.iteco.fmhandroid.page.LoginPage;
+import ru.iteco.fmhandroid.page.MainPage;
 
 public class TestUtils {
+
+    public static String LOGIN = "login2";
+    public static String PASSWORD = "password2";
+
+    public static void logOut() {
+        ViewInteraction userButton = onView(withId(R.id.authorization_image_button));
+        userButton.check(matches(isDisplayed()));
+        userButton.perform(click());
+
+        ViewInteraction logOutButton = onView(withText("Log out"));
+        logOutButton.check(matches(isDisplayed()));
+        logOutButton.perform(click());
+    }
+
+    public static void logIn() {
+        LoginPage loginPage = new LoginPage();
+
+        loginPage.waitUntilPageLoaded();
+        loginPage.validatePageLoaded();
+
+        loginPage.typeLogin(LOGIN);
+        loginPage.typePassword(PASSWORD);
+
+        loginPage.signIn();
+
+        MainPage mainPage = new MainPage();
+
+        mainPage.waitUntilPageLoaded();
+    }
+
     /**
      * Perform action of waiting for a specific view id to be displayed.
      *
@@ -69,17 +101,6 @@ public class TestUtils {
                         .build();
             }
         };
-    }
-
-
-    public static void logOut() {
-        ViewInteraction userButton = onView(withId(R.id.authorization_image_button));
-        userButton.check(matches(isDisplayed()));
-        userButton.perform(click());
-
-        ViewInteraction logOutButton = onView(withText("Log out"));
-        logOutButton.check(matches(isDisplayed()));
-        logOutButton.perform(click());
     }
 }
 
