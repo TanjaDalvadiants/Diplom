@@ -27,5 +27,13 @@ public class NavPage {
         newsPageButton.perform(click());
     }
 
+    public void goToAboutPage() {
+        toastButton.check(matches(isDisplayed()));
+        toastButton.perform(click());
+
+        aboutPageButton.check(matches(isDisplayed()));
+        aboutPageButton.perform(click());
+    }
+
 
 }

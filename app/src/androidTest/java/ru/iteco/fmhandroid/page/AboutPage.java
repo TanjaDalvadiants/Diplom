@@ -1,7 +1,6 @@
 package ru.iteco.fmhandroid.page;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
@@ -12,21 +11,19 @@ import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
 
-public class MainPage {
-    ViewInteraction newsTitle = onView(withId(R.id.container_list_news_include_on_fragment_main));
-    ViewInteraction missionButton = onView(withId(R.id.our_mission_image_button));
+public class AboutPage {
+
+    ViewInteraction versionTitle = onView(withId(R.id.about_version_title_text_view));
+    ViewInteraction privacyTitle = onView(withId(R.id.about_privacy_policy_label_text_view));
+    ViewInteraction termsOfUseTitle = onView(withId(R.id.about_terms_of_use_label_text_view));
 
     public void validatePageLoaded() {
-        newsTitle.check(matches(isDisplayed()));
-        missionButton.check(matches(isDisplayed()));
+        versionTitle.check(matches(isDisplayed()));
+        privacyTitle.check(matches(isDisplayed()));
+        termsOfUseTitle.check(matches(isDisplayed()));
     }
 
     public void waitUntilPageLoaded() {
-        onView(isRoot()).perform(waitDisplayed(R.id.container_list_news_include_on_fragment_main, 10000));
+        onView(isRoot()).perform(waitDisplayed(R.id.about_version_title_text_view, 6000));
     }
-
-    public void goToMissionPage() {
-        missionButton.perform(click());
-    }
-
 }
