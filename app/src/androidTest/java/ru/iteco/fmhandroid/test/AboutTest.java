@@ -37,8 +37,23 @@ public class AboutTest {
     }
 
     @Test
-    public void goToAboutPageTest() {
+    public void goToAboutPageFromMainTest() {
         NavPage navPage = new NavPage();
+        navPage.goToAboutPage();
+
+        AboutPage aboutPage = new AboutPage();
+        aboutPage.waitUntilPageLoaded();
+        aboutPage.validatePageLoaded();
+
+        Espresso.pressBack();
+    }
+
+    @Test
+    public void goToAboutPageFromNewsTest() {
+
+        NavPage navPage = new NavPage();
+        navPage.goToNewsPage();
+
         navPage.goToAboutPage();
 
         AboutPage aboutPage = new AboutPage();
