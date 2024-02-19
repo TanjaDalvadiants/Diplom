@@ -7,6 +7,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.firebase.crashlytics'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 android {
@@ -19,7 +20,8 @@ android {
         targetSdkVersion 32
         versionCode 14
         versionName "1.0.0"
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'io.qameta.allure.android.runners.AllureAndroidJUnitRunner'
+        testInstrumentationRunnerArguments clearPackageData: "true"
     }
 
     compileOptions {
@@ -29,6 +31,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
     }
 
     buildFeatures {
@@ -100,4 +106,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
     androidTestImplementation 'androidx.test:rules:1.6.0-alpha01'
     androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestUtil 'androidx.test:orchestrator:1.4.0'
+
+    androidTestImplementation "io.qameta.allure:allure-kotlin-model:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-commons:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-junit4:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-android:2.4.0"
 }

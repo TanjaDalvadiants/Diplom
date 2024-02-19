@@ -4,7 +4,6 @@ import static ru.iteco.fmhandroid.test.TestUtils.logIn;
 import static ru.iteco.fmhandroid.test.TestUtils.logOut;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import org.junit.After;
@@ -13,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import ru.iteco.fmhandroid.page.ControlPanelPage;
 import ru.iteco.fmhandroid.page.CreatingNewsPage;
 import ru.iteco.fmhandroid.page.NavPage;
@@ -20,7 +20,7 @@ import ru.iteco.fmhandroid.page.NewsPage;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 public class NewsTest {
 
     @Rule

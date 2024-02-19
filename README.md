@@ -1,4 +1,27 @@
 # Приложение «Мобильный хоспис»
+
+## Test resulst for allure
+
+See this folder on device for report data:
+```shell
+/sdcard/googletest/test_outputfiles/build/allure-results
+```
+
+Copy to ./allure-results folder and run report generation
+```shell
+./app/build/allure/commandline/bin/allure generate 
+```
+
+If no such bin allure file, run 
+```shell
+./gradlew allureReport       
+```
+
+Runn all tests in project on existing android device (could be android studios' emulator)
+```shell
+./gradlew clean connectedAndroidTest   
+```
+
 ## Правила именования в проекте (*для разработчиков*):
 
 Имена пакетов всегда в нижнем регистре и без подчеркивания. Использование многословных имен обычно не рекомендуется, но если действительно нужно использовать несколько слов, можно просто объединить их вместе или использовать camelCase.
