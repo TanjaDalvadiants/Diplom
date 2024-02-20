@@ -3,29 +3,23 @@ package ru.iteco.fmhandroid.test;
 import static ru.iteco.fmhandroid.test.TestUtils.logIn;
 import static ru.iteco.fmhandroid.test.TestUtils.logOut;
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.filters.LargeTest;
-
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+import io.qameta.allure.kotlin.Allure;
+import io.qameta.allure.kotlin.Description;
+import io.qameta.allure.kotlin.Epic;
+import io.qameta.allure.kotlin.Feature;
+import io.qameta.allure.kotlin.Story;
 import ru.iteco.fmhandroid.page.ControlPanelPage;
 import ru.iteco.fmhandroid.page.CreatingNewsPage;
 import ru.iteco.fmhandroid.page.NavPage;
 import ru.iteco.fmhandroid.page.NewsPage;
-import ru.iteco.fmhandroid.ui.AppActivity;
 
-@LargeTest
-@RunWith(AllureAndroidJUnit4.class)
-public class NewsTest {
-
-    @Rule
-    public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
-            new ActivityScenarioRule<>(AppActivity.class);
+@Epic("Внутренние страницы приложения")
+@Feature("Новости")
+public class NewsTest extends BaseTest {
 
     @After
     public void logout() {
@@ -44,9 +38,13 @@ public class NewsTest {
 
 
     @Test
+    @Story("Работа с новостями")
+    @Description("Переход на экран с новостями")
     public void goToNewsPageTest() {
-
+        Allure.step("Вызов меню навигации");
         NavPage navPage = new NavPage();
+
+        Allure.step("Переход на экран News");
         navPage.goToNewsPage();
 
         NewsPage newsPage = new NewsPage();
@@ -55,8 +53,13 @@ public class NewsTest {
     }
 
     @Test
+    @Story("Работа с новостями")
+    @Description("Добавление новости")
     public void addNewsTest() {
+        Allure.step("Вызов меню навигации");
         NavPage navPage = new NavPage();
+
+        Allure.step("Переход на экран News");
         navPage.goToNewsPage();
 
         NewsPage newsPage = new NewsPage();
@@ -64,11 +67,13 @@ public class NewsTest {
         newsPage.validatePageLoaded();
         newsPage.goToControlPanel();
 
+        Allure.step("Переход в режим редактирования новостей");
         ControlPanelPage controlPanelPage = new ControlPanelPage();
         controlPanelPage.waitUntilPageLoaded();
         controlPanelPage.validatePageLoaded();
         controlPanelPage.addNews();
 
+        Allure.step("Переход на экран создания новости и заполнение всех полей");
         CreatingNewsPage creatingNewsPage = new CreatingNewsPage();
         creatingNewsPage.waitUntilPageLoaded();
         creatingNewsPage.validatePageLoaded();
@@ -77,6 +82,8 @@ public class NewsTest {
         creatingNewsPage.typeDate(NEWS_DATE);
         creatingNewsPage.typeTime();
         creatingNewsPage.typeDescription(NEWS_DESCRIPTION);
+
+        Allure.step("Подтверждение создания новости");
         creatingNewsPage.addNews();
 
         controlPanelPage.waitUntilPageLoaded();

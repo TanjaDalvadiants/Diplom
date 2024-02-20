@@ -2,24 +2,24 @@
 
 ## Test resulst for allure
 
-See this folder on device for report data:
+See this folder on device for allure report data:
 ```shell
 /sdcard/googletest/test_outputfiles/build/allure-results
 ```
 
-Copy to ./allure-results folder and run report generation
+Copy this to ./allure-results folder and run report generation
 ```shell
-./app/build/allure/commandline/bin/allure generate 
+./app/build/allure/commandline/bin/allure generate
 ```
 
 If no such bin allure file, run 
 ```shell
-./gradlew allureReport       
+./gradlew allureReport
 ```
 
 Runn all tests in project on existing android device (could be android studios' emulator)
 ```shell
-./gradlew clean connectedAndroidTest   
+./gradlew clean connectedAndroidTest
 ```
 
 ## Правила именования в проекте (*для разработчиков*):
