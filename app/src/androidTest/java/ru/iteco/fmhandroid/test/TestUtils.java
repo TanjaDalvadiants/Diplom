@@ -1,19 +1,14 @@
 package ru.iteco.fmhandroid.test;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import android.view.View;
 
 import androidx.test.espresso.PerformException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.util.HumanReadables;
 import androidx.test.espresso.util.TreeIterables;
 
@@ -21,40 +16,7 @@ import org.hamcrest.Matcher;
 
 import java.util.concurrent.TimeoutException;
 
-import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.page.LoginPage;
-import ru.iteco.fmhandroid.page.MainPage;
-
 public class TestUtils {
-
-    public static String LOGIN = "login2";
-    public static String PASSWORD = "password2";
-
-    public static void logOut() {
-        ViewInteraction userButton = onView(withId(R.id.authorization_image_button));
-        userButton.check(matches(isDisplayed()));
-        userButton.perform(click());
-
-        ViewInteraction logOutButton = onView(withText("Log out"));
-        logOutButton.check(matches(isDisplayed()));
-        logOutButton.perform(click());
-    }
-
-    public static void logIn() {
-        LoginPage loginPage = new LoginPage();
-
-        loginPage.waitUntilPageLoaded();
-        loginPage.validatePageLoaded();
-
-        loginPage.typeLogin(LOGIN);
-        loginPage.typePassword(PASSWORD);
-
-        loginPage.signIn();
-
-        MainPage mainPage = new MainPage();
-
-        mainPage.waitUntilPageLoaded();
-    }
 
     /**
      * Perform action of waiting for a specific view id to be displayed.

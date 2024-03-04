@@ -7,6 +7,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
@@ -33,6 +34,23 @@ public class NavPage {
 
         aboutPageButton.check(matches(isDisplayed()));
         aboutPageButton.perform(click());
+    }
+
+    public void goToMainPage() {
+        toastButton.check(matches(isDisplayed()));
+        toastButton.perform(click());
+
+        mainPageButton.check(matches(isDisplayed()));
+        mainPageButton.perform(click());
+    }
+
+    public boolean checkIfToastButtonVisible(){
+        try {
+            toastButton.check(matches(isDisplayed()));
+            return true; // Элемент найден и виден
+        } catch (NoMatchingViewException e) {
+            return false; // Элемент не найден или не виден
+        }
     }
 
 

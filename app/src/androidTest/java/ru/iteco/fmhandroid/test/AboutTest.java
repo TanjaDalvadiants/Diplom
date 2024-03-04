@@ -1,11 +1,9 @@
 package ru.iteco.fmhandroid.test;
 
-import static ru.iteco.fmhandroid.test.TestUtils.logIn;
-import static ru.iteco.fmhandroid.test.TestUtils.logOut;
+import static ru.iteco.fmhandroid.test.AuthUtils.goToMainPage;
 
 import androidx.test.espresso.Espresso;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,14 +19,9 @@ import ru.iteco.fmhandroid.page.NavPage;
 @Feature("О приложении")
 public class AboutTest extends BaseTest {
 
-    @After
-    public void logout() {
-        logOut();
-    }
-
     @Before
     public void login() {
-        logIn();
+        goToMainPage();
     }
 
     @Test

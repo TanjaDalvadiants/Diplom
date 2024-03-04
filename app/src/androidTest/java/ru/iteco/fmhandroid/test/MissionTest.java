@@ -1,9 +1,7 @@
 package ru.iteco.fmhandroid.test;
 
-import static ru.iteco.fmhandroid.test.TestUtils.logIn;
-import static ru.iteco.fmhandroid.test.TestUtils.logOut;
+import static ru.iteco.fmhandroid.test.AuthUtils.goToMainPage;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,14 +16,9 @@ import ru.iteco.fmhandroid.page.MissionPage;
 @Epic("Внутренние страницы приложения")
 @Feature("Цитаты")
 public class MissionTest extends BaseTest {
-    @After
-    public void logout() {
-        logOut();
-    }
-
     @Before
     public void login() {
-        logIn();
+        goToMainPage();
     }
 
     @Test

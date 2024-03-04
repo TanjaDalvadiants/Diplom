@@ -1,10 +1,11 @@
 package ru.iteco.fmhandroid.test;
 
 
-import static ru.iteco.fmhandroid.test.TestUtils.logIn;
-import static ru.iteco.fmhandroid.test.TestUtils.logOut;
+import static ru.iteco.fmhandroid.test.AuthUtils.goToMainPage;
+import static ru.iteco.fmhandroid.test.AuthUtils.logIn;
+import static ru.iteco.fmhandroid.test.AuthUtils.logOut;
 
-import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import io.qameta.allure.kotlin.Description;
@@ -17,8 +18,10 @@ import ru.iteco.fmhandroid.page.MainPage;
 @Feature("Вход в систему")
 public class LoginTest extends BaseTest {
 
-    @After
-    public void logout() {
+
+    @Before
+    public void login() {
+        goToMainPage();
         logOut();
     }
 

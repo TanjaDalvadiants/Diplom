@@ -1,9 +1,7 @@
 package ru.iteco.fmhandroid.test;
 
-import static ru.iteco.fmhandroid.test.TestUtils.logIn;
-import static ru.iteco.fmhandroid.test.TestUtils.logOut;
+import static ru.iteco.fmhandroid.test.AuthUtils.goToMainPage;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,14 +19,9 @@ import ru.iteco.fmhandroid.page.NewsPage;
 @Feature("Новости")
 public class NewsTest extends BaseTest {
 
-    @After
-    public void logout() {
-        logOut();
-    }
-
     @Before
     public void login() {
-        logIn();
+        goToMainPage();
     }
 
     public static String NEWS_CATEGORY = "Объявление";
@@ -87,7 +80,6 @@ public class NewsTest extends BaseTest {
         creatingNewsPage.addNews();
 
         controlPanelPage.waitUntilPageLoaded();
-
     }
 
 }

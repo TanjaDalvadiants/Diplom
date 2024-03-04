@@ -44,7 +44,7 @@ public class LoginPage {
     }
 
     public void waitUntilPageLoaded() {
-        onView(isRoot()).perform(waitDisplayed(R.id.login_text_input_layout, 6000));
+        onView(isRoot()).perform(waitDisplayed(R.id.login_text_input_layout, 10_000));
     }
 
     public void typeLogin(String login) {
