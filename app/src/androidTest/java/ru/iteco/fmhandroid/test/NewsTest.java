@@ -92,7 +92,6 @@ public class NewsTest extends BaseTest {
         ViewInteraction createdNews = controlPanelPage.findNewsByTitle(newsTitle);
 
         createdNews.check(matches(isDisplayed()));
-
     }
 
     private String getRandomNumber(){

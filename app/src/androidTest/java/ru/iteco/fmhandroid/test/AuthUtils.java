@@ -19,13 +19,19 @@ public class AuthUtils {
     public static String PASSWORD = "password2";
 
     public static void logOut() {
-        ViewInteraction userButton = onView(withId(R.id.authorization_image_button));
-        userButton.check(matches(isDisplayed()));
-        userButton.perform(click());
+        LoginPage loginPage = new LoginPage();
+        try {
+            loginPage.waitUntilPageLoaded();
+            loginPage.validatePageLoaded();
+        } catch (Exception e) {
+            ViewInteraction userButton = onView(withId(R.id.authorization_image_button));
+            userButton.check(matches(isDisplayed()));
+            userButton.perform(click());
 
-        ViewInteraction logOutButton = onView(withText("Log out"));
-        logOutButton.check(matches(isDisplayed()));
-        logOutButton.perform(click());
+            ViewInteraction logOutButton = onView(withText("Log out"));
+            logOutButton.check(matches(isDisplayed()));
+            logOutButton.perform(click());
+        }
     }
 
     public static void logIn() {
@@ -42,6 +48,19 @@ public class AuthUtils {
         MainPage mainPage = new MainPage();
 
         mainPage.waitUntilPageLoaded();
+    }
+
+    public static void unsuccessfulLogIn(String login, String password) {
+        LoginPage loginPage = new LoginPage();
+
+        loginPage.waitUntilPageLoaded();
+        loginPage.validatePageLoaded();
+
+        loginPage.typeLogin(login);
+        loginPage.typePassword(password);
+
+        loginPage.signIn();
+
     }
 
 

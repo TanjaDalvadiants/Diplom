@@ -59,6 +59,13 @@ public class LoginPage {
         signInButton.perform(click());
     }
 
+    public void waitUntilErrorMessageLoaded() {
+        //У Espresso нет возможности взаимодействовать с системным pop up
+        try {
+            Thread.sleep(1_000);
+        } catch (Exception e){
+        }
+    }
 
 }
 

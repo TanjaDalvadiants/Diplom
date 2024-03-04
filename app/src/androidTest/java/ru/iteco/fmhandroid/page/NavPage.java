@@ -7,8 +7,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
+
+import junit.framework.AssertionFailedError;
 
 import ru.iteco.fmhandroid.R;
 
@@ -48,7 +49,7 @@ public class NavPage {
         try {
             toastButton.check(matches(isDisplayed()));
             return true; // Элемент найден и виден
-        } catch (NoMatchingViewException e) {
+        } catch (AssertionFailedError e) {
             return false; // Элемент не найден или не виден
         }
     }
