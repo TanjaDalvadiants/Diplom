@@ -6,6 +6,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static ru.iteco.fmhandroid.test.TestUtils.waitDisplayed;
 
 import androidx.test.espresso.ViewInteraction;
@@ -25,5 +26,9 @@ public class ControlPanelPage {
 
     public void waitUntilPageLoaded() {
         onView(isRoot()).perform(waitDisplayed(R.id.add_news_image_view, 6000));
+    }
+
+    public ViewInteraction findNewsByTitle(String title){
+        return onView(withText(title));
     }
 }

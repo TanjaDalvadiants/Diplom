@@ -58,18 +58,14 @@ public class CreatingNewsPage {
         titleInputText.perform(replaceText(title), closeSoftKeyboard());
     }
 
-    public void typeDate(String date) {
-        dateInputText.perform(replaceText(date), closeSoftKeyboard());
+    public void typeDate() {
+        dateInputText.perform(click());
+        pressOK();
     }
 
     public void typeTime() {
         timeInputText.perform(click());
-        onView(isRoot()).perform(waitDisplayed(android.R.id.button1, 6000));
-        onView(withId(android.R.id.button1)) // ID кнопки "OK" в стандартном диалоге
-                .inRoot(isDialog()) // Убедитесь, что мы ищем в корне диалогового окна
-                .check(matches(isDisplayed()))
-                .perform(click());
-        onView(isRoot()).perform(waitDisplayed(R.id.news_item_publish_time_text_input_edit_text, 6000));
+        pressOK();
     }
 
     public void typeDescription(String description) {
@@ -78,6 +74,15 @@ public class CreatingNewsPage {
 
     public void addNews() {
         addNewsButton.perform(click());
+    }
+
+    private void pressOK(){
+        onView(isRoot()).perform(waitDisplayed(android.R.id.button1, 6000));
+        onView(withId(android.R.id.button1)) // ID кнопки "OK" в стандартном диалоге
+                .inRoot(isDialog()) // Убедитесь, что мы ищем в корне диалогового окна
+                .check(matches(isDisplayed()))
+                .perform(click());
+        onView(isRoot()).perform(waitDisplayed(R.id.news_item_publish_time_text_input_edit_text, 6000));
     }
 
 }

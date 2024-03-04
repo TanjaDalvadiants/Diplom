@@ -1,4 +1,4 @@
-package ru.iteco.fmhandroid.test;
+package ru.iteco.fmhandroid;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;

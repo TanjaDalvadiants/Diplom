@@ -10,6 +10,7 @@ import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.Feature;
 import io.qameta.allure.kotlin.Story;
+import ru.iteco.fmhandroid.BaseTest;
 import ru.iteco.fmhandroid.page.MainPage;
 import ru.iteco.fmhandroid.page.MissionPage;
 

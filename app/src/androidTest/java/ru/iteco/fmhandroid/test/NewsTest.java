@@ -1,15 +1,22 @@
 package ru.iteco.fmhandroid.test;
 
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static ru.iteco.fmhandroid.test.AuthUtils.goToMainPage;
+
+import androidx.test.espresso.ViewInteraction;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Random;
 
 import io.qameta.allure.kotlin.Allure;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.Feature;
 import io.qameta.allure.kotlin.Story;
+import ru.iteco.fmhandroid.BaseTest;
 import ru.iteco.fmhandroid.page.ControlPanelPage;
 import ru.iteco.fmhandroid.page.CreatingNewsPage;
 import ru.iteco.fmhandroid.page.NavPage;
@@ -26,7 +33,6 @@ public class NewsTest extends BaseTest {
 
     public static String NEWS_CATEGORY = "Объявление";
     public static String NEWS_TITLE = "Тестовая новость";
-    public static String NEWS_DATE = "14.02.2024";
     public static String NEWS_DESCRIPTION = "Тестовое описание";
 
 
@@ -71,15 +77,27 @@ public class NewsTest extends BaseTest {
         creatingNewsPage.waitUntilPageLoaded();
         creatingNewsPage.validatePageLoaded();
         creatingNewsPage.typeCategory(NEWS_CATEGORY);
-        creatingNewsPage.typeTitle(NEWS_TITLE);
-        creatingNewsPage.typeDate(NEWS_DATE);
+        String newsTitle = NEWS_TITLE + getRandomNumber();
+        creatingNewsPage.typeTitle(newsTitle);
+        creatingNewsPage.typeDate();
         creatingNewsPage.typeTime();
         creatingNewsPage.typeDescription(NEWS_DESCRIPTION);
 
-        Allure.step("Подтверждение создания новости");
+        Allure.step("Cозданиe новости");
         creatingNewsPage.addNews();
-
         controlPanelPage.waitUntilPageLoaded();
+
+        Allure.step("Подтверждение создания новости");
+        navPage.goToNewsPage();
+        ViewInteraction createdNews = controlPanelPage.findNewsByTitle(newsTitle);
+
+        createdNews.check(matches(isDisplayed()));
+
+    }
+
+    private String getRandomNumber(){
+        Random random = new Random();
+        return String.valueOf(random.nextInt(100_000));
     }
 
 }
