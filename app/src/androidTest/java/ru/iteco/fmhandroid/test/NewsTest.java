@@ -19,6 +19,7 @@ import io.qameta.allure.kotlin.Story;
 import ru.iteco.fmhandroid.BaseTest;
 import ru.iteco.fmhandroid.page.ControlPanelPage;
 import ru.iteco.fmhandroid.page.CreatingNewsPage;
+import ru.iteco.fmhandroid.page.MainPage;
 import ru.iteco.fmhandroid.page.NavPage;
 import ru.iteco.fmhandroid.page.NewsPage;
 
@@ -92,6 +93,24 @@ public class NewsTest extends BaseTest {
         ViewInteraction createdNews = controlPanelPage.findNewsByTitle(newsTitle);
 
         createdNews.check(matches(isDisplayed()));
+    }
+
+    @Test
+    @Story("Работа с новостями")
+    @Description("Переход на экран с новостями по тапу на all news")
+    public void goToNewsPageByAllNewsTest() {
+        Allure.step("Переход на экран Main");
+        MainPage mainPage = new MainPage();
+        mainPage.waitUntilPageLoaded();
+        mainPage.validatePageLoaded();
+
+        Allure.step("Тап на all news");
+        mainPage.goToAllNewsButton();
+
+        Allure.step("Проверка перехода на страницу с новостями");
+        NewsPage newsPage = new NewsPage();
+        newsPage.waitUntilPageLoaded();
+        newsPage.validatePageLoaded();
     }
 
     private String getRandomNumber(){

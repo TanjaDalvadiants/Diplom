@@ -16,9 +16,12 @@ public class MainPage {
     ViewInteraction newsTitle = onView(withId(R.id.container_list_news_include_on_fragment_main));
     ViewInteraction missionButton = onView(withId(R.id.our_mission_image_button));
 
+    ViewInteraction allNewsButton = onView(withId(R.id.all_news_text_view));
+
     public void validatePageLoaded() {
         newsTitle.check(matches(isDisplayed()));
         missionButton.check(matches(isDisplayed()));
+        allNewsButton.check(matches(isDisplayed()));
     }
 
     public void waitUntilPageLoaded() {
@@ -27,6 +30,11 @@ public class MainPage {
 
     public void goToMissionPage() {
         missionButton.perform(click());
+    }
+
+
+    public void goToAllNewsButton() {
+        allNewsButton.perform(click());
     }
 
 }
