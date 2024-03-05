@@ -1,5 +1,6 @@
 package ru.iteco.fmhandroid.test;
 
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static ru.iteco.fmhandroid.test.AuthUtils.goToMainPage;
@@ -111,6 +112,54 @@ public class NewsTest extends BaseTest {
         NewsPage newsPage = new NewsPage();
         newsPage.waitUntilPageLoaded();
         newsPage.validatePageLoaded();
+    }
+
+    @Test
+    @Story("Работа с новостями")
+    @Description("Отображение расширенного описания новости")
+    public void checkNewsDescriptionVisibleTest() {
+        Allure.step("Вызов меню навигации");
+        NavPage navPage = new NavPage();
+
+        Allure.step("Переход на экран News");
+        navPage.goToNewsPage();
+
+        NewsPage newsPage = new NewsPage();
+        newsPage.waitUntilPageLoaded();
+        newsPage.validatePageLoaded();
+        newsPage.goToControlPanel();
+
+        Allure.step("Переход в режим редактирования новостей");
+        ControlPanelPage controlPanelPage = new ControlPanelPage();
+        controlPanelPage.waitUntilPageLoaded();
+        controlPanelPage.validatePageLoaded();
+        controlPanelPage.addNews();
+
+        Allure.step("Переход на экран создания новости и заполнение всех полей");
+        CreatingNewsPage creatingNewsPage = new CreatingNewsPage();
+        creatingNewsPage.waitUntilPageLoaded();
+        creatingNewsPage.validatePageLoaded();
+        creatingNewsPage.typeCategory(NEWS_CATEGORY);
+        String newsTitle = NEWS_TITLE + getRandomNumber();
+        creatingNewsPage.typeTitle(newsTitle);
+        creatingNewsPage.typeDate();
+        creatingNewsPage.typeTime();
+        String newsDescription = NEWS_DESCRIPTION + getRandomNumber();
+        creatingNewsPage.typeDescription(newsDescription);
+
+        Allure.step("Cозданиe новости");
+        creatingNewsPage.addNews();
+        controlPanelPage.waitUntilPageLoaded();
+
+        Allure.step("Подтверждение создания новости");
+        navPage.goToNewsPage();
+        ViewInteraction createdNews = controlPanelPage.findNewsByTitle(newsTitle);
+
+        Allure.step("Тап на разворачивания новости");
+        createdNews.perform(click());
+
+        Allure.step("Проверка отображения описания новости");
+        newsPage.checkNewsDescriptionVisible(newsDescription);
     }
 
     private String getRandomNumber(){
